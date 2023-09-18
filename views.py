@@ -8,6 +8,12 @@ import string
 
 engine = create_engine('sqlite:///Chinook_Sqlite.sqlite')
 
+
+@view_config(route_name='hello')
+def hello(request):
+    return Response("hello")
+    
+
 @view_config(route_name='generic_query', renderer='templates/generic_query.mako')
 def generic_query(request):
     table = request.matchdict.get('table')
@@ -15,13 +21,9 @@ def generic_query(request):
     value = request.matchdict.get('value')
     connection = engine.connect()
     sql_query = text("SELECT * FROM " + table + " WHERE " + field + " = '" + value + "'")
-    print("SQL Query:", sql_query)
     result = connection.execute(sql_query)
     field_names = list(result.keys())
-    print("field_names", field_names)
     data = result.fetchall()
-    html = '<body><h1>Customer List</h1>'
-    html += '<ul></ul></body>'
     return {"data": data, "field_names": field_names, "table": table}
 
 @view_config(route_name='customer_info', renderer='templates/customer_info.mako')

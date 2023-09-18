@@ -4,3 +4,5 @@ SQLAlchemy==2.0.20
 pyramid-mako==1.1.0
 pytest==7.4.2
 pytest-cov==4.1.0
+pytest-pyramid==1.0.2
+WebTest==3.0.0

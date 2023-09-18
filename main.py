@@ -8,7 +8,6 @@ def main():
         config.add_route('hello', '/')
         config.add_route('customer_info', '/db/Chinook/Customer/{field}/{value}.html')
         config.add_route('generic_query', '/db/Chinook/{table}/{field}/{value}.html')
-        config.add_route('add_customer', '/add')
         config.scan('views')  # this will scan decorations for my views.py file
         app = config.make_wsgi_app()
     return app
