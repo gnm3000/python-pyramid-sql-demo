@@ -2,12 +2,11 @@ from pyramid.view import view_config
 from pyramid.response import Response
 from sqlalchemy.orm import sessionmaker
 from models import Customer  
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
 import random
 import string
 
-engine = create_engine('sqlite:///Chinook_Sqlite.sqlite')
-
+from settings import engine
 
 @view_config(route_name='hello')
 def hello(request):
