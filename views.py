@@ -1,17 +1,16 @@
 from pyramid.view import view_config
 from pyramid.response import Response
 from sqlalchemy.orm import sessionmaker
-from models import Customer  
+from models import Customer
 from sqlalchemy import text
-import random
-import string
 
 from settings import engine
+
 
 @view_config(route_name='hello')
 def hello(request):
     return Response("hello")
-    
+
 
 @view_config(route_name='generic_query', renderer='templates/generic_query.mako')
 def generic_query(request):
@@ -24,6 +23,7 @@ def generic_query(request):
     field_names = list(result.keys())
     data = result.fetchall()
     return {"data": data, "field_names": field_names, "table": table}
+
 
 @view_config(route_name='customer_info', renderer='templates/customer_info.mako')
 def customer_info(request):
@@ -38,4 +38,3 @@ def customer_info(request):
         html += f'<li>{customer.FirstName} {customer.LastName} - {customer.Country}</li>'
     html += '</ul></body>'
     return {'result': html}
-

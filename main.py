@@ -1,6 +1,7 @@
 from waitress import serve
 from pyramid.config import Configurator
 
+
 def main():
     with Configurator() as config:
         config.include('pyramid_mako')
@@ -12,6 +13,8 @@ def main():
         app = config.make_wsgi_app()
     return app
 
+
 if __name__ == '__main__':
     app = main()
+    print("web server started on port 6543")
     serve(app, host='0.0.0.0', port=6543)
